@@ -1,0 +1,134 @@
+﻿@model SIMS.Controllers.StudentController.StudentCoursesViewModel
+
+@{
+    ViewData["Title"] = "My Courses";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="courses-container">
+    <h2>My Courses</h2>
+
+    @if (Model.Courses != null && Model.Courses.Any())
+    {
+        <div class="table-responsive">
+            <table class="table table-striped table-hover custom-table">
+                <thead>
+                    <tr>
+                        <th>Course Code</th>
+                        <th>Course Name</th>
+                        <th>Credits</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var course in Model.Courses)
+                    {
+                        <tr>
+                            <td>@course.CourseId</td>
+                            <td>@course.CourseName</td>
+                            <td>@course.Credits</td>
+                            <td>
+                                @if (course.Status == "Completed")
+                                {
+                                    <span class="status-completed">@course.Status</span>
+                                }
+                                else if (course.Status == "Failed")
+                                {
+                                    <span class="status-in-progress">@course.Status</span>
+                                }
+                                else
+                                {
+                                    <span>@(course.Status ?? "N/A")</span>
+                                }
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-info" role="alert">
+            You have not enrolled in any courses.
+        </div>
+    }
+</div>
+
+<style>
+    .courses-container {
+        background-color: #fff; /* Màu nền trắng cho container */
+        padding: 20px;
+        border-radius: 10px;
+        margin-bottom: 20px;
+    }
+
+        .courses-container h2 {
+            color: #2F3645; /* Màu xanh đen đậm cho tiêu đề */
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+    .form-group label {
+        color: #9339185; /* Màu xám nâu cho label */
+        font-weight: 500;
+    }
+
+    .custom-select {
+        border: 1px solid #E6B9A6; /* Viền màu hồng nhạt */
+        border-radius: 5px;
+        padding: 8px;
+        background-color: #EEEDEB; /* Màu nền nhạt */
+        color: #2F3645; /* Màu chữ xanh đen đậm */
+        transition: border-color 0.3s ease;
+    }
+
+        .custom-select:focus {
+            border-color: #2F3645; /* Màu xanh đen đậm khi focus */
+        }
+
+    .custom-table {
+        border: 1px solid #E6B9A6; /* Viền màu hồng nhạt */
+        border-radius: 8px;
+        overflow: hidden; /* Đảm bảo bo góc không bị cắt */
+    }
+
+        .custom-table thead {
+            background-color: #2F3645; /* Màu xanh đen đậm cho header */
+            color: #EEEDEB; /* Màu chữ nhạt */
+        }
+
+        .custom-table th, .custom-table td {
+            padding: 12px 15px;
+            vertical-align: middle;
+            color: #9339185; /* Màu xám nâu cho chữ trong bảng */
+        }
+
+        .custom-table tbody tr {
+            transition: background-color 0.3s ease;
+        }
+
+
+    .status-completed {
+        color: #28a745; /* Màu xanh lá cho trạng thái Completed */
+        font-weight: bold;
+        background-color: rgba(40, 167, 69, 0.1); /* Nền nhạt để nổi bật */
+        padding: 2px 8px;
+        border-radius: 12px;
+    }
+
+    .status-in-progress {
+        color: #fd7e14; /* Màu cam cho trạng thái In Progress */
+        font-weight: bold;
+        background-color: rgba(253, 126, 20, 0.1); /* Nền nhạt để nổi bật */
+        padding: 2px 8px;
+        border-radius: 12px;
+    }
+
+    .alert-info {
+        background-color: #EEEDEB; /* Màu nền nhạt cho thông báo */
+        color: #9339185; /* Màu xám nâu cho chữ */
+        border-color: #E6B9A6; /* Viền màu hồng nhạt */
+        border-radius: 8px;
+    }
+</style>

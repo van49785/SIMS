@@ -1,0 +1,98 @@
+﻿@model SIMS.Models.ApplicationUser
+
+@{
+    ViewData["Title"] = "Delete User";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="delete-user-container">
+    <h2>Delete User</h2>
+
+    <h3>Are you sure you want to delete this user?</h3>
+
+    <div class="user-details card">
+        <div class="card-body">
+            <h4 class="card-title">User Details</h4>
+            <dl class="row">
+                <dt class="col-sm-3">Email</dt>
+                <dd class="col-sm-9">@Model.Email</dd>
+
+                <dt class="col-sm-3">User Code</dt>
+                <dd class="col-sm-9">@Model.UserCode</dd>
+
+                <dt class="col-sm-3">First Name</dt>
+                <dd class="col-sm-9">@Model.FirstName</dd>
+
+                <dt class="col-sm-3">Last Name</dt>
+                <dd class="col-sm-9">@Model.LastName</dd>
+            </dl>
+        </div>
+    </div>
+
+    <div class="mt-4">
+        <form asp-action="Delete" class="d-inline">
+            <input type="hidden" asp-for="Id" />
+            <button type="submit" class="btn btn-danger">Delete</button>
+        </form>
+        <a asp-action="Index" class="btn btn-secondary ml-2">Cancel</a>
+    </div>
+</div>
+
+<style>
+    .delete-user-container {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        margin-bottom: 20px;
+    }
+
+        .delete-user-container h2 {
+            color: #2F3645;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .delete-user-container h3 {
+            color: #9339185;
+            font-weight: 500;
+            margin-bottom: 20px;
+        }
+
+    .user-details {
+        border: 1px solid #E6B9A6;
+        border-radius: 8px;
+        background-color: #EEEDEB;
+    }
+
+        .user-details .card-title {
+            color: #2F3645;
+            font-weight: 500;
+            margin-bottom: 15px;
+        }
+
+        .user-details dt {
+            color: #2F3645;
+            font-weight: 500;
+        }
+
+        .user-details dd {
+            color: #9339185;
+        }
+
+    .btn-danger {
+        background-color: #dc3545;
+        border: none;
+        border-radius: 5px;
+        padding: 8px 16px;
+        transition: background-color 0.3s ease;
+    }
+
+    .btn-secondary {
+        background-color: #9339185;
+        border: none;
+        border-radius: 5px;
+        padding: 8px 16px;
+        transition: background-color 0.3s ease;
+    }
+
+</style>

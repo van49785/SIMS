@@ -1,0 +1,94 @@
+﻿/* site.css */
+
+/* Reset mặc định */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #EEEDEB; /* Màu nền nhạt */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Navbar brand */
+a.navbar-brand {
+    white-space: normal;
+    text-align: center;
+    word-break: break-all;
+    color: #2F3645; /* Màu xanh đen đậm cho logo */
+    font-weight: 600;
+    font-size: 1.5rem;
+    text-decoration: none;
+}
+
+    a.navbar-brand:hover {
+        color: #E6B9A6; /* Màu hồng nhạt khi hover */
+    }
+
+/* Link mặc định */
+a {
+    color: #2F3645; /* Màu xanh đen đậm */
+    transition: color 0.3s ease;
+}
+
+    a:hover {
+        color: #E6B9A6; /* Màu hồng nhạt khi hover */
+    }
+
+/* Button primary */
+.btn-primary {
+    color: #fff;
+    background-color: #2F3645; /* Màu xanh đen đậm */
+    border-color: #2F3645;
+    border-radius: 8px;
+    padding: 0.5rem 1rem;
+    transition: background-color 0.3s ease;
+}
+
+    .btn-primary:hover {
+        background-color: #E6B9A6; /* Màu hồng nhạt khi hover */
+        border-color: #E6B9A6;
+        color: #2F3645;
+    }
+
+/* Nav pills */
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+    color: #fff;
+    background-color: #2F3645; /* Màu xanh đen đậm */
+    border-color: #2F3645;
+}
+
+/* Border */
+.border-top {
+    border-top: 1px solid #E6B9A6; /* Viền màu hồng nhạt */
+}
+
+.border-bottom {
+    border-bottom: 1px solid #E6B9A6; /* Viền màu hồng nhạt */
+}
+
+/* Box shadow */
+.box-shadow {
+    box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.05);
+}
+
+/* Footer */
+.footer {
+    background-color: #2F3645; /* Màu xanh đen đậm cho footer */
+    color: #EEEDEB; /* Màu chữ nhạt */
+    position: relative; /* Không cần absolute để tránh lỗi hiển thị */
+    width: 100%;
+    white-space: nowrap;
+    line-height: 60px;
+    text-align: center;
+}
+
+    .footer a {
+        color: #E6B9A6; /* Màu hồng nhạt cho link trong footer */
+    }
+
+        .footer a:hover {
+            color: #fff;
+        }

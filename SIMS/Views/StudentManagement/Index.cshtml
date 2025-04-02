@@ -1,0 +1,142 @@
+﻿@model IEnumerable<SIMS.Controllers.StudentManagementController.StudentViewModel>
+
+@{
+    ViewData["Title"] = "Manage Students";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="students-container">
+    <h2>Manage Students</h2>
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success custom-alert" role="alert">
+            @TempData["SuccessMessage"]
+        </div>
+    }
+
+    <div class="mb-4">
+        <a asp-action="Create" class="btn btn-primary">Create New Student</a>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-striped table-hover custom-table">
+            <thead>
+                <tr>
+                    <th>Email</th>
+                    <th>User Code</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Department</th>
+                    <th>Enrolled Courses</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var student in Model)
+                {
+                    <tr>
+                        <td>@student.Email</td>
+                        <td>@student.UserCode</td>
+                        <td>@student.FirstName</td>
+                        <td>@student.LastName</td>
+                        <td>@student.DepartmentName</td>
+                        <td>
+                            @if (student.EnrolledCourses != null && student.EnrolledCourses.Any())
+                            {
+                                <ul class="list-unstyled">
+                                    @foreach (var course in student.EnrolledCourses)
+                                    {
+                                        <li>@course</li>
+                                    }
+                                </ul>
+                            }
+                            else
+                            {
+                                <span class="text-muted">No courses enrolled</span>
+                            }
+                        </td>
+                        <td>
+                            <a class="btn btn-secondary btn-sm" asp-action="Edit" asp-route-id="@student.Id">Edit</a>
+                            <a class="btn btn-danger btn-sm ml-2" asp-action="Delete" asp-route-id="@student.Id">Delete</a>
+                            <a class="btn btn-primary btn-sm ml-2" asp-action="AssignCourses" asp-route-id="@student.Id">Assign Courses</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<style>
+    .students-container {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        margin-bottom: 20px;
+    }
+
+        .students-container h2 {
+            color: #2F3645;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+    .custom-alert {
+        background-color: #EEEDEB;
+        color: #9339185;
+        border-color: #E6B9A6;
+        border-radius: 8px;
+        margin-bottom: 20px;
+    }
+
+    .btn-primary {
+        background-color: #2F3645;
+        border: none;
+        border-radius: 5px;
+        padding: 8px 16px;
+        transition: background-color 0.3s ease;
+    }
+
+    .custom-table {
+        border: 1px solid #E6B9A6;
+        border-radius: 8px;
+        overflow: hidden;
+    }
+
+        .custom-table thead {
+            background-color: #2F3645;
+            color: #EEEDEB;
+        }
+
+        .custom-table th, .custom-table td {
+            padding: 12px 15px;
+            vertical-align: middle;
+            color: #9339185;
+        }
+
+        .custom-table tbody tr {
+            transition: background-color 0.3s ease;
+        }
+
+    .text-muted {
+        color: #9339185;
+        font-style: italic;
+    }
+
+    .btn-secondary {
+        background-color: #9339185;
+        border: none;
+        border-radius: 5px;
+        padding: 6px 12px;
+        transition: background-color 0.3s ease;
+    }
+
+    .btn-danger {
+        background-color: #dc3545;
+        border: none;
+        border-radius: 5px;
+        padding: 6px 12px;
+        transition: background-color 0.3s ease;
+    }
+</style>

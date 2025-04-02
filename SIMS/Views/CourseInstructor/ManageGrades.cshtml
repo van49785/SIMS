@@ -1,0 +1,131 @@
+﻿@model SIMS.Controllers.CourseInstructorController.ManageGradesViewModel
+
+@{
+    ViewData["Title"] = "Manage Grades";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="grades-container">
+    <h2>Manage Grades for @Model.CourseId - @Model.CourseName</h2>
+
+    @if (Model.StudentGrades != null && Model.StudentGrades.Any())
+    {
+        <div class="table-responsive">
+            <table class="table table-striped table-hover custom-table">
+                <thead>
+                    <tr>
+                        <th>Student Code</th>
+                        <th>Student Name</th>
+                        <th>Grade</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var student in Model.StudentGrades)
+                    {
+                        <tr>
+                            <td>@student.UserCode</td>
+                            <td>@student.StudentName</td>
+                            <td>@(student.Grade.HasValue ? student.Grade.Value.ToString("F2") : "Not graded")</td>
+                            <td>
+                                <form asp-action="UpdateGrade" method="post" class="d-inline-flex align-items-center">
+                                    <input type="hidden" name="studentId" value="@student.StudentId" />
+                                    <input type="hidden" name="courseId" value="@Model.CourseId" />
+                                    <input type="number" name="grade" step="0.01" min="0" max="10" value="@(student.Grade.HasValue ? student.Grade.Value.ToString() : "")" class="form-control grade-input" />
+                                    <button type="submit" class="btn btn-success btn-sm ml-2">Update</button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-info" role="alert">
+            No students are enrolled in this course.
+        </div>
+    }
+
+    <div class="mt-3">
+        <a asp-controller="CourseInstructor" asp-action="Index" class="btn btn-secondary">Back to Courses</a>
+    </div>
+</div>
+
+<style>
+    .grades-container {
+        background-color: #fff; /* Màu nền trắng cho container */
+        padding: 20px;
+        border-radius: 10px;
+        margin-bottom: 20px;
+    }
+
+        .grades-container h2 {
+            color: #2F3645; /* Màu xanh đen đậm cho tiêu đề */
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+    .custom-table {
+        border: 1px solid #E6B9A6; /* Viền màu hồng nhạt */
+        border-radius: 8px;
+        overflow: hidden; /* Đảm bảo bo góc không bị cắt */
+    }
+
+        .custom-table thead {
+            background-color: #2F3645; /* Màu xanh đen đậm cho header */
+            color: #EEEDEB; /* Màu chữ nhạt */
+        }
+
+        .custom-table th, .custom-table td {
+            padding: 12px 15px;
+            vertical-align: middle;
+            color: #9339185; /* Màu xám nâu cho chữ trong bảng */
+        }
+
+        .custom-table tbody tr {
+            transition: background-color 0.3s ease;
+        }
+
+            .custom-table tbody tr:hover {
+                background-color: #E6B9A6; /* Màu hồng nhạt khi hover */
+                color: #2F3645; /* Màu xanh đen đậm cho chữ khi hover */
+            }
+
+    .grade-input {
+        width: 100px;
+        border: 1px solid #E6B9A6; /* Viền màu hồng nhạt */
+        border-radius: 5px;
+        padding: 5px;
+        transition: border-color 0.3s ease;
+    }
+
+        .grade-input:focus {
+            border-color: #2F3645; /* Màu xanh đen đậm khi focus */
+            box-shadow: 0 0 5px rgba(47, 54, 69, 0.2);
+        }
+
+    .btn-success {
+        background-color: #2F3645; /* Màu xanh đen đậm cho nút Update */
+        border: none;
+        border-radius: 5px;
+        padding: 6px 12px;
+        transition: background-color 0.3s ease;
+    }
+
+    .btn-secondary {
+        background-color: #9339185; /* Màu xám nâu cho nút Back */
+        border: none;
+        border-radius: 5px;
+        padding: 8px 16px;
+        transition: background-color 0.3s ease;
+    }
+
+    .alert-info {
+        background-color: #EEEDEB; /* Màu nền nhạt cho thông báo */
+        color: #9339185; /* Màu xám nâu cho chữ */
+        border-color: #E6B9A6; /* Viền màu hồng nhạt */
+        border-radius: 8px;
+    }
+</style>

@@ -1,0 +1,99 @@
+﻿@model SIMS.Controllers.StudentManagementController.AssignCoursesViewModel
+
+@{
+    ViewData["Title"] = "Assign Courses";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="assign-courses-container">
+    <h2>Assign Courses for @Model.StudentName</h2>
+
+    <div class="row">
+        <div class="col-md-6">
+            <form asp-action="AssignCourses" method="post">
+                <input type="hidden" asp-for="StudentId" />
+                <div asp-validation-summary="All" class="text-danger mb-3"></div>
+
+                <div class="form-group mb-3">
+                    <label class="control-label">Select Courses</label>
+                    <select multiple class="form-control custom-select" name="SelectedCourseIds">
+                        @foreach (var course in Model.AvailableCourses)
+                        {
+                            if (Model.EnrolledCourseIds.Contains(int.Parse(course.Value)))
+                            {
+                                <option value="@course.Value" selected>@course.Text</option>
+                            }
+                            else
+                            {
+                                <option value="@course.Value">@course.Text</option>
+                            }
+                        }
+                    </select>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">Save</button>
+                    <a asp-controller="StudentManagement" asp-action="Index" class="btn btn-secondary ml-2">Back to Students</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+
+<style>
+    .assign-courses-container {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        margin-bottom: 20px;
+    }
+
+        .assign-courses-container h2 {
+            color: #2F3645;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+    .form-group label {
+        color: #9339185;
+        font-weight: 500;
+    }
+
+    .custom-select {
+        border: 1px solid #E6B9A6;
+        border-radius: 5px;
+        padding: 8px;
+        background-color: #EEEDEB;
+        color: #2F3645;
+        transition: border-color 0.3s ease;
+        height: 200px; /* Tăng chiều cao để hiển thị nhiều lựa chọn */
+    }
+
+        .custom-select:focus {
+            border-color: #2F3645;
+        }
+
+    .text-danger {
+        font-size: 0.875rem;
+    }
+
+    .btn-primary {
+        background-color: #2F3645;
+        border: none;
+        border-radius: 5px;
+        padding: 8px 16px;
+        transition: background-color 0.3s ease;
+    }
+
+
+    .btn-secondary {
+        background-color: #9339185;
+        border: none;
+        border-radius: 5px;
+        padding: 8px 16px;
+        transition: background-color 0.3s ease;
+    }
+</style>

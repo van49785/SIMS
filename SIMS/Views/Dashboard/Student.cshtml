@@ -1,0 +1,73 @@
+﻿@model SIMS.Models.ApplicationUser
+@inject SIMS.Services.Interfaces.IEnrollmentService EnrollmentRepository
+
+@{
+    ViewData["Title"] = "Student Dashboard";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="dashboard-container">
+    <h2>Student Dashboard</h2>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card info-card">
+                <div class="card-body">
+                    <h4 class="card-title">Welcome, @Model.FirstName @Model.LastName!</h4>
+                    <p class="card-text"><strong>Email:</strong> @Model.Email</p>
+                    <p class="card-text"><strong>Code:</strong> @Model.UserCode</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .dashboard-container {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        margin-bottom: 20px;
+    }
+
+        .dashboard-container h2 {
+            color: #2F3645;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+    .info-card, .courses-card {
+        border: 1px solid #E6B9A6;
+        border-radius: 8px;
+    }
+
+        .info-card .card-title, .courses-card .card-title {
+            color: #2F3645;
+            font-weight: 500;
+            margin-bottom: 15px;
+        }
+
+        .info-card .card-text, .courses-card .card-text {
+            color: #933985;
+            margin-bottom: 10px;
+        }
+
+            .info-card .card-text strong, .courses-card .card-text strong {
+                color: #2F3645;
+            }
+
+    .list-group-item {
+        border: none;
+        color: #933985;
+    }
+
+    .btn-primary {
+        background-color: #2F3645;
+        border: none;
+        transition: background-color 0.3s ease;
+    }
+
+        .btn-primary:hover {
+            background-color: #1F2635;
+        }
+</style>
