@@ -1,4 +1,6 @@
-﻿using SIMS.Models;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using SIMS.Models;
 
 namespace SIMS.Repositories.Interfaces
 {
@@ -6,5 +8,6 @@ namespace SIMS.Repositories.Interfaces
     {
         Task<List<CourseInstructor>> GetCoursesByInstructorIdAsync(int instructorId);
         Task<CourseInstructor> GetCourseInstructorAsync(int instructorId, int courseId);
+
     }
 }

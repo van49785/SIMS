@@ -15,12 +15,11 @@ builder.Services.AddLogging(logging =>
     logging.SetMinimumLevel(LogLevel.Debug);
 });
 
-// Đăng ký DbContext
 builder.Services.AddDbContext<MyDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 // Thêm Session và bộ nhớ cache
-builder.Services.AddDistributedMemoryCache(); // Thêm bộ nhớ cho Session
+builder.Services.AddDistributedMemoryCache(); 
 builder.Services.AddSession(options =>
 {
     options.IdleTimeout = TimeSpan.FromMinutes(30);
@@ -39,14 +38,12 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddHttpContextAccessor();
 
-// Đăng ký Repositories
 builder.Services.AddScoped<IApplicationUserRepository, ApplicationUserRepository>();
 builder.Services.AddScoped<ICourseRepository, CourseRepository>();
 builder.Services.AddScoped<IEnrollmentRepository, EnrollmentRepository>();
 builder.Services.AddScoped<IDepartmentRepository, DepartmentRepository>();
 builder.Services.AddScoped<ICourseInstructorRepository, CourseInstructorRepository>();
 
-// Đăng ký Services
 builder.Services.AddScoped<IUserManagementService, UserManagementService>();
 builder.Services.AddScoped<ICourseManagementService, CourseManagementService>();
 builder.Services.AddScoped<IStudentManagementService, StudentManagementService>();
@@ -71,7 +68,7 @@ else
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
-app.UseSession(); // Đảm bảo Session sẵn sàng trước khi dùng
+app.UseSession(); 
 
 // Middleware tùy chỉnh để lấy CurrentUser
 app.Use(async (context, next) =>

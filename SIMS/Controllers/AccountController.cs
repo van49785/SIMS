@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using SIMS.Models;
 using SIMS.Services.Interfaces;
 using System.ComponentModel.DataAnnotations;
@@ -56,7 +57,5 @@ namespace SIMS.Controllers
 
         [Required]
         public string Password { get; set; }
-
-        public bool RememberMe { get; set; }
     }
 }

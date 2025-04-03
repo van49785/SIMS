@@ -65,14 +65,11 @@ namespace SIMS.Services
 
                     var existingEnrollments = await _enrollmentRepository.GetEnrollmentsByStudentAsync(userId);
 
-                    // Xóa tất cả các enrollments hiện tại
                     foreach (var enrollment in existingEnrollments)
                         await _enrollmentRepository.DeleteAsync(enrollment.EnrollmentId);
 
-                    // Lưu các thay đổi xóa enrollment
                     await _enrollmentRepository.SaveAsync();
 
-                    // Thêm các enrollments mới
                     if (courseIds != null && courseIds.Any())
                     {
                         foreach (var courseId in courseIds)
@@ -87,16 +84,13 @@ namespace SIMS.Services
                             await _enrollmentRepository.AddAsync(enrollment);
                         }
 
-                        // Lưu các thay đổi thêm enrollment
                         await _enrollmentRepository.SaveAsync();
                     }
 
-                    // Hoàn thành transaction nếu không có lỗi
                     scope.Complete();
                 }
                 catch (Exception)
                 {
-                    // Transaction sẽ tự động rollback nếu có lỗi
                     throw;
                 }
             }

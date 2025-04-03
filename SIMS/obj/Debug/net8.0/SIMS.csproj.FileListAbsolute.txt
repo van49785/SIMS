@@ -968,4 +968,4 @@ C:\Users\Nguyen Van\Downloads\SIMS\SIMS\obj\Debug\net8.0\SIMS.pdb
 C:\Users\Nguyen Van\Downloads\SIMS\SIMS\obj\Debug\net8.0\SIMS.genruntimeconfig.cache
 C:\Users\Nguyen Van\Downloads\SIMS\SIMS\obj\Debug\net8.0\ref\SIMS.dll
 C:\Users\Nguyen Van\Downloads\SIMS\SIMS\bin\Debug\net8.0\BCrypt.Net-Next.dll
-C:\Users\Nguyen Van\Downloads\SIMS\SIMS\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
+C:\Users\Nguyen Van\Downloads\SIMS\SIMS\obj\Debug\net8.0\SIMS.sourcelink.json

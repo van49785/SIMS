@@ -15,8 +15,7 @@ namespace SIMS.Services
 
         public async Task<List<Enrollment>> GetEnrollmentsByStudentAsync(int userId)
         {
-            return (await _enrollmentRepository.GetEnrollmentsByStudentAsync(userId))
-                .ToList();
+            return (await _enrollmentRepository.GetEnrollmentsByStudentAsync(userId)).ToList();
         }
     }
 }
